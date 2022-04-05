@@ -1,21 +1,34 @@
-import React, { useContext } from 'react';
-import { CounterContext } from './context';
+import React, { useContext, useState } from 'react';
+
 import pubSub from './pubSub';
+import store from '../store/store';
 
 export default function useStateButWorse() {
-    const { setCount, count } = useContext(CounterContext);
+    const [value, setValue]= useState(0);
+    const  {publish,subscribe}=pubSub();
 
-    const add = () => {
-        setCount(count + 1);
-    };
+    const storeValue = store().storeObj.count;
+ 
+    console.log(storeValue);
 
-    const substract = () => {
-        setCount(count - 1);
-    };
 
-    return {
-        substract,
-        add,
-        count,
-    };
+    const add_fnc= () =>{
+        setValue(storeValue+1);
+        // storeObj=[...storeObj,value]
+      }
+    
+    const substract_fct=()=>{
+        setValue(storeValue-1);
+        // storeObj=[...storeObj,value]
+    }
+
+    publish('add',add_fnc);
+    publish('substract', substract_fct);
+    
+    return{
+        subscribe,value,setValue    }
 }
+
+
+
+ 
