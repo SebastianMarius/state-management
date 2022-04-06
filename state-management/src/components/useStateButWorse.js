@@ -4,29 +4,32 @@ import pubSub from './pubSub';
 import store from '../store/store';
 
 export default function useStateButWorse() {
-    const [value, setValue]= useState(0);
-    const  {publish,subscribe}=pubSub();
+    const localStore = store();
+   
+    const [value, setValue]= useState(localStore.getState('count'));
+    console.log('it renders')
+    
 
-    const storeValue = store().storeObj.count;
+    const pubSubRef= pubSub;
  
-    console.log(storeValue);
+
+    localStore.subscribe('add', () => {
+        console.log('sub')
+        // console.log(localStore.getState('count')+'  +++++++')
+        setValue(localStore.getState('count'))
+    });
 
 
-    const add_fnc= () =>{
-        setValue(storeValue+1);
-        // storeObj=[...storeObj,value]
-      }
     
-    const substract_fct=()=>{
-        setValue(storeValue-1);
-        // storeObj=[...storeObj,value]
+ 
+    // console.log(localStore);
+    
+    return {
+        value,
+        setValue, 
+        pubSubRef, 
+        add: localStore.add_fnc   
     }
-
-    publish('add',add_fnc);
-    publish('substract', substract_fct);
-    
-    return{
-        subscribe,value,setValue    }
 }
 
 

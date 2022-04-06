@@ -1,4 +1,6 @@
-export default function pubSub() {
+import store from "../store/store";
+
+ function pubSub() {
     const subscribers = {};
 
     console.log(subscribers);
@@ -19,8 +21,13 @@ export default function pubSub() {
         subscribers[eventName].push(callback);
     }
 
+
+
     return {
         publish,
         subscribe,
     };
 }
+
+export default pubSub;
+

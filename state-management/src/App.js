@@ -7,7 +7,7 @@ function App() {
         <>
 
             <div>ssss</div>
-                <Page />
+<Page />
         </>
     );
 }
