@@ -3,21 +3,27 @@ import React, { useContext, useState } from 'react';
 import pubSub from './pubSub';
 import store from '../store/store';
 
-export default function useStateButWorse() {
-    const localStore = store();
+export default function useStateButWorse(store) {
+    console.log("store: ", store);
    
-    const [value, setValue]= useState(localStore.getState('count'));
+    const [value, setValue]= useState(store.getState('count'));
     console.log('it renders')
     
 
     const pubSubRef= pubSub;
  
 
-    localStore.subscribe('add', () => {
-        console.log('sub')
+    store.subscribe('add', () => {
+        console.log('sub');
         // console.log(localStore.getState('count')+'  +++++++')
-        setValue(localStore.getState('count'))
+        setValue(store.getState('count'))
     });
+
+
+    store.subscribe('substract', ()=>{
+        console.log('take out');
+        setValue(store.getState('count'))
+    })
 
 
     
@@ -28,7 +34,8 @@ export default function useStateButWorse() {
         value,
         setValue, 
         pubSubRef, 
-        add: localStore.add_fnc   
+        add: store.add_fnc,
+        substract: store.substract_fct
     }
 }
 

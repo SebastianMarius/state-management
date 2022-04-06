@@ -15,25 +15,19 @@ function store(){
 
     const add_fnc= () =>{
         let storeObjValue=getState('count');
-        ++storeObjValue;
-        storeObj.count=storeObjValue;
-        console.log(storeObj.count+' =========');
-        // console.log(storeObjValue+ " valueee");
-        // storeObj.count=storeObjValue;
-        // console.log('executed add fnc '+storeObj.count)
+        storeObj.count=storeObjValue+1;
         publish('add',storeObj.count);
-
-      
       }
     
     const substract_fct=()=>{
-        let storeObjValue= storeObjValue.count;
+        let storeObjValue= getState('count');
         storeObj.count=storeObjValue-1;
+        publish('substract',storeObj.count);
     }
 
  
     return{
-        storeObj,add_fnc,subscribe,getState
+        storeObj,add_fnc,substract_fct, subscribe,getState
     }
 }
 
