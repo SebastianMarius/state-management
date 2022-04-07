@@ -4,17 +4,14 @@ import pubSub from './pubSub';
 import store from '../store/store';
 
 export default function useStateButWorse(store) {
-    console.log("store: ", store);
-   
-    const [value, setValue]= useState(store.getState('count'));
-    console.log('it renders')
-    
+ 
+    const [value, setValue]= useState(store.getState('count'));   
 
     const pubSubRef= pubSub;
  
 
-    store.subscribe('add', () => {
-        console.log('sub');
+    store.subscribe('add', (param) => {
+        console.log('sub '+ JSON.stringify(param));
         // console.log(localStore.getState('count')+'  +++++++')
         setValue(store.getState('count'))
     });

@@ -13,15 +13,16 @@ function store(){
         return storeObj[storeField];
     }
 
-    const add_fnc= () =>{
+    const add_fnc= (param) =>{
         let storeObjValue=getState('count');
-        storeObj.count=storeObjValue+1;
-        publish('add',storeObj.count);
+        storeObj.count=storeObjValue+param;
+        publish('add',storeObj);
+        console.log('publish')
       }
     
-    const substract_fct=()=>{
+    const substract_fct=(param)=>{
         let storeObjValue= getState('count');
-        storeObj.count=storeObjValue-1;
+        storeObj.count=storeObjValue-param;
         publish('substract',storeObj.count);
     }
 

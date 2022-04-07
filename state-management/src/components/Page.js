@@ -14,9 +14,19 @@ export default function Page({store}) {
     return (
         <>
             <div className='App'>
-                <button onClick={substract}>take outtt</button>
-                <button onClick={add}>add button</button>
-                <h1>value: {value}</h1>
+                <div className='app-ui'>         
+                 
+                      <p>A friendly counter..</p>
+
+                      <button className='buttons-style' onClick={()=>substract(1)}>take outtt</button>
+                      <button className='buttons-style' onClick={()=>add(1)}>add button</button>
+
+                      <h1>value: {value}</h1>
+                </div>
+
+                
+               
+                  
             </div>
         </>
     );
