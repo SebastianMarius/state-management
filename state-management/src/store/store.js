@@ -3,7 +3,7 @@ import pubSub from "../components/pubSub";
 function store(){
     const  {publish,subscribe}=pubSub();
 
-    console.log('renderrr')
+ 
 
     const storeObj={
         count:0
@@ -16,14 +16,14 @@ function store(){
     const add_fnc= (param) =>{
         let storeObjValue=getState('count');
         storeObj.count=storeObjValue+param;
-        publish('add',storeObj);
-        console.log('publish')
+        publish('add');
+        // console.log('publish')
       }
     
     const substract_fct=(param)=>{
         let storeObjValue= getState('count');
         storeObj.count=storeObjValue-param;
-        publish('substract',storeObj.count);
+        publish('substract');
     }
 
  

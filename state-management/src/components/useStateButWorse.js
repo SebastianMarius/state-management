@@ -10,15 +10,15 @@ export default function useStateButWorse(store) {
     const pubSubRef= pubSub;
  
 
-    store.subscribe('add', (param) => {
-        console.log('sub '+ JSON.stringify(param));
+    store.subscribe('add', () => {
+        // console.log('sub '+ JSON.stringify(param));
         // console.log(localStore.getState('count')+'  +++++++')
         setValue(store.getState('count'))
     });
 
 
     store.subscribe('substract', ()=>{
-        console.log('take out');
+        // console.log('take out');
         setValue(store.getState('count'))
     })
 
